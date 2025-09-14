@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartBallot</title>
+    <style>
+        /* Body and overall layout */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4b6cb7, #182848); /* Blue-purple gradient */
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Container with fade-in animation */
+        .container {
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        /* Login button styling */
+        .btn {
+            background: white;
+            color: #182848;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hover effect with scaling and color change */
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #e0e0e0;
+        }
+
+        /* Ripple animation on click */
+        .btn::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.3);
+            display: block;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1);
+            animation: ripple 0.6s linear;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0); opacity: 0.7; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to SmartBallot</h1>
+        <p>Secure and easy online voting for your college elections.</p>
+        <form action="/login" method="get">
+            <button class="btn">Login</button>
+        </form>
+    </div>
+</body>
+</html>
