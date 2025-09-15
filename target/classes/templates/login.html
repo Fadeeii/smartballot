@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartBallot - Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #182848, #4b6cb7);
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .login-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 1s ease-in-out;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .btn {
+            background-color: white;
+            color: #182848;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #e0e0e0;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .error {
+            color: #ffcccc;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            <input type="text" name="collegeId" placeholder="Enter College ID" required><br>
+            <input type="password" name="password" placeholder="Enter Password" required><br>
+            <button class="btn" type="submit">Submit</button>
+        </form>
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+    </div>
+</body>
+</html>
