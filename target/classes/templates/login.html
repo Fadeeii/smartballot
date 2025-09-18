@@ -21,16 +21,22 @@
             padding: 30px;
             border-radius: 20px;
             text-align: center;
+            width: 320px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             animation: slideIn 1s ease-in-out;
+        }
+        h2 {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
         }
         input {
             padding: 10px;
             margin: 10px 0;
-            width: 80%;
+            width: 85%;
             border: none;
             border-radius: 5px;
             text-align: center;
+            outline: none;
         }
         .btn {
             background-color: white;
@@ -40,7 +46,8 @@
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            margin-top: 10px;
+            margin: 5px;
+            transition: all 0.2s ease-in-out;
         }
         .btn:hover {
             transform: scale(1.05);
@@ -55,17 +62,30 @@
             font-size: 0.9rem;
             margin-top: 10px;
         }
+        p.note {
+            font-size: 0.85rem;
+            color: #ddd;
+        }
     </style>
 </head>
 <body>
-    <div class="login-box">
-        <h2>Login</h2>
-        <form action="/login" method="post">
-            <input type="text" name="collegeId" placeholder="Enter College ID" required><br>
-            <input type="password" name="password" placeholder="Enter Password" required><br>
-            <button class="btn" type="submit">Submit</button>
-        </form>
-        <div th:if="${error}" class="error" th:text="${error}"></div>
-    </div>
+<div class="login-box">
+    <h2>Login</h2>
+    <form action="/login" method="post">
+        <input type="text" name="name" placeholder="Enter Your Name" required><br>
+        <input type="text" name="collegeId" placeholder="Enter College ID" required><br>
+        <input type="password" name="password" placeholder="Enter Password" required><br>
+        <button type="button" class="btn" onclick="goBack()">Back</button>
+        <button class="btn" type="submit">Submit</button>
+    </form>
+    <p class="note">Use your college credentials provided by the admin.</p>
+    <div th:if="${error}" class="error" th:text="${error}"></div>
+</div>
+
+<script>
+    function goBack() {
+        window.location.href = "/";  // ✅ Go to the root path handled by HelloController
+    }
+</script>
 </body>
 </html>

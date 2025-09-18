@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HelloController {
 
     @GetMapping("/")
-    public String homePage() {
-        return "index"; // loads index.html
+    public String home() {
+        return "index.html"; // loads index.html from static folder
     }
 
     @GetMapping("/login")
-    public String loginPage() {
-        return "login"; // we will create login.html next
+    public String login() {
+        return "login.html"; // loads login.html from static folder
     }
 }
