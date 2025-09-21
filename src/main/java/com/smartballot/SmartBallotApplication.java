@@ -9,4 +9,3 @@ public class SmartBallotApplication {
         SpringApplication.run(SmartBallotApplication.class, args);
     }
 }
-

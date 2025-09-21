@@ -3,3 +3,4 @@ com\smartballot\controller\HelloController.class
 com\smartballot\SmartBallotApplication.class
 com\smartballot\model\Student.class
 com\smartballot\repository\StudentRepository.class
+com\smartballot\controller\LoginController.class

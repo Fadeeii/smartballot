@@ -8,11 +8,11 @@ public class HelloController {
 
     @GetMapping("/")
     public String home() {
-        return "index.html"; // loads index.html from static folder
+        return "index";  // ✅ Spring will look for templates/index.html
     }
 
     @GetMapping("/login")
     public String login() {
-        return "login.html"; // loads login.html from static folder
+        return "login";  // ✅ Spring will look for templates/login.html
     }
 }
