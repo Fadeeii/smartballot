@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Election</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #0d47a1;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px 0;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background-color: #0d47a1;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Start Election</h2>
+    <form action="/admin/start-election" method="POST">
+        <label for="candidate_name">Candidate Name</label>
+        <input type="text" id="candidate_name" name="candidate_name" required>
+
+        <label for="party_name">Party Name</label>
+        <input type="text" id="party_name" name="party_name" required>
+
+        <label for="election_date">Election Date</label>
+        <input type="date" id="election_date" name="election_date" required>
+
+        <label for="election_time">Election Time</label>
+        <input type="time" id="election_time" name="election_time" required>
+
+        <button type="submit">Add Candidate & Schedule</button>
+    </form>
+</div>
+</body>
+</html>
