@@ -1,48 +1,84 @@
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #182848, #4b6cb7);
-    font-family: Arial, sans-serif;
-    color: white;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
 
-.container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    width: 400px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    animation: slideIn 1s ease-in-out;
-}
+        .dashboard-container {
+            text-align: center;
+            padding: 50px 20px;
+        }
 
-h2 {
-    margin-bottom: 10px;
-    font-size: 1.8rem;
-}
+        .dashboard-container h2 {
+            color: #0d47a1;
+            margin-bottom: 10px;
+        }
 
-button {
-    background-color: white;
-    color: #182848;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    margin: 5px;
-    transition: all 0.2s ease-in-out;
-}
+        .dashboard-container p {
+            color: #555;
+            margin-bottom: 40px;
+        }
 
-button:hover {
-    transform: scale(1.05);
-    background-color: #e0e0e0;
-}
+        .dashboard-actions {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
 
-@keyframes slideIn {
-    from { opacity: 0; transform: translateY(-30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        .action-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 180px;
+            height: 120px;
+            background-color: #0d47a1; /* Blue theme */
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .action-start { background-color: #1976d2; }  /* Start Election - Blue shade */
+        .action-publish { background-color: #1565c0; } /* Publish Result - Darker blue */
+        .action-cease { background-color: #0d47a1; }   /* Cease Election - Darkest blue */
+    </style>
+</head>
+<body>
+<div class="dashboard-container">
+    <h2>Admin Dashboard</h2>
+    <p>Welcome, Admin</p>
+
+    <div class="dashboard-actions">
+        <a href="/admin/start-election" class="action-card action-start">
+            Start Election
+        </a>
+
+        <a href="/admin/publish-result" class="action-card action-publish">
+            Publish Result
+        </a>
+
+        <a href="/admin/cease-election" class="action-card action-cease">
+            Cease Election
+        </a>
+    </div>
+</div>
+</body>
+</html>

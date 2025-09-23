@@ -8,10 +8,22 @@
 
 </head>
 <body>
-<div class="container">
-    <h2>Welcome Admin</h2>
-    <p>You can add candidates, manage elections, and view results.</p>
-    <button onclick="window.location.href='/'">Logout</button>
+<div class="dashboard-container">
+    <h2>Admin Dashboard</h2>
+    <p>Welcome, Admin</p>
+
+    <div class="dashboard-actions">
+        <a href="/admin/start-election" class="action-card action-start">
+            Start Election
+        </a>
+
+        <a href="/admin/publish-result" class="action-card action-publish">
+            Publish Result
+        </a>
+
+        <a href="/admin/cease-election" class="action-card action-cease">
+            Cease Election
+        </a>
+    </div>
 </div>
 </body>
-</html>
