@@ -34,9 +34,7 @@ public class AdminController {
     public String addCandidate(@RequestParam("candidate_name") String candidateName,
                                @RequestParam("party_name") String partyName,
                                @RequestParam("election_name") String electionName,
-                               @RequestParam("election_date") String electionDate,
-                               @RequestParam(value = "start_date", required = false) String startDate,
-                               @RequestParam(value = "end_date", required = false) String endDate) {
+                               @RequestParam("election_date") String electionDate) {
 
         // Find existing election or create new
         Election election = electionRepository.findByName(electionName)
@@ -44,12 +42,6 @@ public class AdminController {
                     Election e = new Election();
                     e.setName(electionName);
                     e.setElectionDate(java.time.LocalDate.parse(electionDate));
-                    if (startDate != null && !startDate.isEmpty()) {
-                        e.setStartDate(java.time.LocalDate.parse(startDate));
-                    }
-                    if (endDate != null && !endDate.isEmpty()) {
-                        e.setEndDate(java.time.LocalDate.parse(endDate));
-                    }
                     return electionRepository.save(e);
                 });
 
@@ -58,6 +50,13 @@ public class AdminController {
         candidate.setElection(election);
         candidateRepository.save(candidate);
 
+        return "redirect:/admin/start-election";
+    }
+
+    // ✅ Delete candidate
+    @GetMapping("/delete-candidate/{id}")
+    public String deleteCandidate(@PathVariable Long id) {
+        candidateRepository.deleteById(id);
         return "redirect:/admin/start-election";
     }
 
