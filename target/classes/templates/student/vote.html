@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f6f8; margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: #0d47a1; text-align: center; margin-bottom: 30px; }
+        .election { margin-bottom: 25px; padding: 20px; border: 1px solid #ddd; border-radius: 12px; background: #f9f9f9; }
+        .election h3 { margin: 0 0 5px 0; color: #333; }
+        .election p { margin: 0 0 15px 0; color: #555; }
+        .candidates { display: flex; flex-direction: column; gap: 10px; }
+        .candidate { display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; border: 1px solid #eee; border-radius: 8px; background: #fff; }
+        .candidate span { font-weight: bold; color: #0d47a1; }
+        .candidate button { padding: 6px 12px; background-color: #0d47a1; color: #fff; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
+        .candidate button:hover { background-color: #1976d2; }
+        .voted { color: green; font-weight: bold; }
+        .message { margin-bottom: 20px; text-align: center; color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Active Elections</h2>
+
+    <div th:if="${message}" class="message" th:text="${message}"></div>
+
+    <div th:each="election: ${elections}" class="election">
+        <h3 th:text="${election.name}">Election Name</h3>
+        <p>Status: <span th:text="${election.status}">ACTIVE</span>|Date: <span th:text="${election.electionDate}">2025-09-25</span></p>
+
+        <div class="candidates">
+            <div th:each="candidate : ${election.candidates}" class="candidate">
+                <span th:text="${candidate.name} + ' - ' + ${candidate.party}">Candidate Name - Party</span>
+
+                <!-- Vote button or Voted label -->
+                <form th:action="@{/student/vote}" method="post" th:if="${#lists.isEmpty(castedVotes[election.id])}">
+                    <input type="hidden" name="election_id" th:value="${election.id}"/>
+                    <input type="hidden" name="candidate_id" th:value="${candidate.id}"/>
+                    <button type="submit">Vote</button>
+                </form>
+                <span class="voted" th:if="${!#lists.isEmpty(castedVotes[election.id])}">Voted</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

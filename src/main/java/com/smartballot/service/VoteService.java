@@ -28,31 +28,31 @@ public class VoteService {
     }
 
     public String castVote(Long studentId, Long electionId, Long candidateId) {
-        // Check election exists
+        // 1️⃣ Check election exists
         Optional<Election> electionOpt = electionRepository.findById(electionId);
         if (electionOpt.isEmpty()) {
             return "Election not found";
         }
         Election election = electionOpt.get();
 
-        // Check if election is active on its electionDate
+        // 2️⃣ Check if election is active today
         LocalDate today = LocalDate.now();
-        if (!today.equals(election.getElectionDate()) || !"ACTIVE".equals(election.getStatus())) {
+        if (!"ACTIVE".equalsIgnoreCase(election.getStatus()) || !today.equals(election.getElectionDate())) {
             return "Election is not active right now";
         }
 
-        // Check if student already voted in this election
-        if (voteRepository.findByStudentIdAndElectionId(studentId, electionId).isPresent()) {
+        // 3️⃣ Check if student already voted in this election
+        if (voteRepository.findByStudentIdAndElection(studentId, election).isPresent()) {
             return "You have already voted in this election";
         }
 
-        // Check candidate exists
+        // 4️⃣ Check candidate exists and belongs to this election
         Optional<Candidate> candidateOpt = candidateRepository.findById(candidateId);
-        if (candidateOpt.isEmpty()) {
-            return "Candidate not found";
+        if (candidateOpt.isEmpty() || !candidateOpt.get().getElection().getId().equals(electionId)) {
+            return "Candidate not found in this election";
         }
 
-        // Save vote
+        // 5️⃣ Save vote
         Vote vote = new Vote();
         vote.setStudentId(studentId);
         vote.setElection(election);

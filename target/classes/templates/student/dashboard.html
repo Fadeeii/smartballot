@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="/style.css">
-
 </head>
 <body>
-<div class="container">
-    <h2>Welcome Student</h2>
-    <p>You can vote for your favorite candidate here.</p>
-    <button onclick="window.location.href='/'">Logout</button>
+<div class="dashboard-container">
+    <h2>Student Dashboard</h2>
+    <p>Welcome, Student/p>
+    <div class="dashboard-actions">
+        <a href="/student/vote" class="action-card action-start">Vote</a>
+        <a href="/student/result" class="action-card action-publish">Results</a>
+
+    </div>
 </div>
 </body>
 </html>
