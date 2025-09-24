@@ -15,9 +15,9 @@ public class VoteController {
 
     // POST: /votes/cast?studentId=1&electionId=2&candidateId=3
     @PostMapping("/cast")
-    public String castVote(@RequestParam Long studentId,
-                           @RequestParam Long electionId,
-                           @RequestParam Long candidateId) {
-        return voteService.castVote(studentId, electionId, candidateId);
+    public String castVote(@RequestParam Long studentid,
+                           @RequestParam Long electionid,
+                           @RequestParam Long candidateid) {
+        return voteService.castVote(studentid, electionid, candidateid);
     }
 }

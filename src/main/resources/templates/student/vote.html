@@ -35,11 +35,13 @@
                 <span th:text="${candidate.name} + ' - ' + ${candidate.party}">Candidate Name - Party</span>
 
                 <!-- Vote button or Voted label -->
-                <form th:action="@{/student/vote}" method="post" th:if="${#lists.isEmpty(castedVotes[election.id])}">
-                    <input type="hidden" name="election_id" th:value="${election.id}"/>
-                    <input type="hidden" name="candidate_id" th:value="${candidate.id}"/>
+                <form th:action="@{/votes/cast}" method="post">
+                    <input type="hidden" name="studentid" th:value="${student.id}" />
+                    <input type="hidden" name="electionid" th:value="${election.id}" />
+                    <input type="hidden" name="candidateid" th:value="${candidate.id}" />
                     <button type="submit">Vote</button>
                 </form>
+
                 <span class="voted" th:if="${!#lists.isEmpty(castedVotes[election.id])}">Voted</span>
             </div>
         </div>
