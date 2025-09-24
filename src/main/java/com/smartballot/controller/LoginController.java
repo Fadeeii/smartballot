@@ -24,13 +24,15 @@ public class LoginController {
 
         if (student != null) {
             if ("admin".equalsIgnoreCase(student.getRole())) {
-                return "admin-dashboard";
+                // ✅ match templates/admin/dashboard.html
+                return "admin/dashboard";
             } else {
-                return "student-dashboard";
+                // ✅ match templates/student/dashboard.html
+                return "student/dashboard";
             }
         }
 
         model.addAttribute("error", "Invalid College ID or Password!");
-        return "login";
+        return "login"; // ✅ match templates/login.html
     }
 }
