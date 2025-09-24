@@ -2,6 +2,7 @@ package com.smartballot.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -15,19 +16,22 @@ public class Election {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(name = "election_date", nullable = false)
+    @Column(nullable = false)
     private LocalDate electionDate;
 
-    @Column(name = "start_date")
-    private LocalDate startDate;
+    @Column(nullable = false)
+    private String status = "SCHEDULED"; // SCHEDULED, ACTIVE, ENDED
 
-    @Column(name = "end_date")
-    private LocalDate endDate;
+    @Column
+    private LocalTime startTime;
 
-    @OneToMany(mappedBy = "election", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column
+    private LocalTime endTime;
+
+    @OneToMany(mappedBy = "election", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Candidate> candidates;
 
-    // --- Getters and Setters ---
+    // Getters & Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -37,11 +41,14 @@ public class Election {
     public LocalDate getElectionDate() { return electionDate; }
     public void setElectionDate(LocalDate electionDate) { this.electionDate = electionDate; }
 
-    public LocalDate getStartDate() { return startDate; }
-    public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public LocalDate getEndDate() { return endDate; }
-    public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
+    public LocalTime getStartTime() { return startTime; }
+    public void setStartTime(LocalTime startTime) { this.startTime = startTime; }
+
+    public LocalTime getEndTime() { return endTime; }
+    public void setEndTime(LocalTime endTime) { this.endTime = endTime; }
 
     public List<Candidate> getCandidates() { return candidates; }
     public void setCandidates(List<Candidate> candidates) { this.candidates = candidates; }

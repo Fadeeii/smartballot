@@ -9,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -19,14 +23,10 @@ public class AdminController {
     @Autowired
     private ElectionRepository electionRepository;
 
-    @GetMapping({"/dashboard", ""})
-    public String dashboard() {
-        return "admin/dashboard";
-    }
-
     @GetMapping("/start-election")
-    public String startElection(Model model) {
-        model.addAttribute("candidates", candidateRepository.findAll());
+    public String startElectionPage(Model model) {
+        List<Election> elections = electionRepository.findAll();
+        model.addAttribute("elections", elections);
         return "admin/start-election";
     }
 
@@ -36,37 +36,49 @@ public class AdminController {
                                @RequestParam("election_name") String electionName,
                                @RequestParam("election_date") String electionDate) {
 
-        // Find existing election or create new
         Election election = electionRepository.findByName(electionName)
                 .orElseGet(() -> {
                     Election e = new Election();
                     e.setName(electionName);
-                    e.setElectionDate(java.time.LocalDate.parse(electionDate));
+                    e.setElectionDate(LocalDate.parse(electionDate));
+                    e.setStatus("SCHEDULED");
                     return electionRepository.save(e);
                 });
 
-        // Save the candidate
-        Candidate candidate = new Candidate(candidateName, partyName, electionDate, "10:00"); // placeholder time
+        Candidate candidate = new Candidate();
+        candidate.setName(candidateName);
+        candidate.setParty(partyName);
+        candidate.setElectionDate(electionDate);
+        candidate.setElectionTime("10:00");
         candidate.setElection(election);
-        candidateRepository.save(candidate);
 
+        candidateRepository.save(candidate);
         return "redirect:/admin/start-election";
     }
 
-    // ✅ Delete candidate
     @GetMapping("/delete-candidate/{id}")
     public String deleteCandidate(@PathVariable Long id) {
         candidateRepository.deleteById(id);
         return "redirect:/admin/start-election";
     }
 
-    @GetMapping("/publish-result")
-    public String publishResult() {
-        return "admin/publish-result";
+    @PostMapping("/start-election/{id}")
+    public String startElection(@PathVariable Long id) {
+        Election election = electionRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid election ID: " + id));
+        election.setStatus("ACTIVE");
+        election.setStartTime(LocalTime.now());
+        electionRepository.save(election);
+        return "redirect:/admin/start-election";
     }
 
-    @GetMapping("/cease-election")
-    public String ceaseElection() {
-        return "admin/cease-election";
+    @PostMapping("/stop-election/{id}")
+    public String stopElection(@PathVariable Long id) {
+        Election election = electionRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid election ID: " + id));
+        election.setStatus("ENDED");
+        election.setEndTime(LocalTime.now());
+        electionRepository.save(election);
+        return "redirect:/admin/start-election";
     }
 }

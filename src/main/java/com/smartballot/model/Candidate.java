@@ -17,7 +17,7 @@ public class Candidate {
     private String party;
 
     @Column(nullable = false)
-    private String electionDate; // keep as String for simplicity
+    private String electionDate; // for simplicity
 
     @Column(nullable = false)
     private String electionTime; // placeholder time
@@ -26,7 +26,6 @@ public class Candidate {
     @JoinColumn(name = "election_id")
     private Election election;
 
-    // Constructors
     public Candidate() {}
     public Candidate(String name, String party, String electionDate, String electionTime) {
         this.name = name;
@@ -35,7 +34,7 @@ public class Candidate {
         this.electionTime = electionTime;
     }
 
-    // Getters and Setters
+    // Getters & setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
