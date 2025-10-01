@@ -12,39 +12,55 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #4b6cb7, #182848);
+            background-image: url('/BACKGROUND.jpg'); /* ✅ Corrected path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             font-family: Arial, sans-serif;
-            color: white;
+            color: #182848;
             text-align: center;
         }
+
         .container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.8); /* ✅ changed from black to white with transparency */
+            padding: 60px; /* ✅ increased padding */
+            border-radius: 30px; /* ✅ softer corners */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* more depth */
+            max-width: 500px; /* ✅ wider card */
+            width: 90%;
             animation: fadeIn 1s ease-in-out;
         }
+
+        .logo {
+            width: 180px; /* ✅ increased size */
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
         h1 {
             margin-bottom: 20px;
-            font-size: 2rem;
+            font-size: 2.5rem;
         }
+
         .btn {
             display: inline-block;
-            background-color: white;
-            color: #182848;
-            padding: 10px 20px;
-            font-size: 1rem;
+            background-color: #182848;
+            color: white;
+            padding: 12px 28px;
+            font-size: 1.1rem;
             border: none;
-            border-radius: 20px;
+            border-radius: 25px;
             cursor: pointer;
-            margin: 10px;
+            margin: 12px;
             text-decoration: none;
             transition: all 0.2s ease-in-out;
         }
+
         .btn:hover {
             transform: scale(1.05);
-            background-color: #e0e0e0;
+            background-color: #3a4c78;
         }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -53,6 +69,8 @@
 </head>
 <body>
 <div class="container">
+    <!-- ✅ Logo -->
+    <img src="/logo.png" alt="SmartBallot Logo" class="logo">
     <h1>Welcome to SmartBallot</h1>
     <p>Choose your action below:</p>
     <a href="/login" class="btn">Login</a>

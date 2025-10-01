@@ -4,7 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('/static/images/admin-bg.jpg'); /* ✅ Background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #182848;
+        }
+
+        .dashboard-container {
+            background: rgba(255, 255, 255, 0.85); /* ✅ semi-transparent white */
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            backdrop-filter: blur(6px);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .action-card {
+            display: block;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            color: white;
+            border-radius: 12px;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .action-start {
+            background-color: #28a745;
+        }
+
+        .action-publish {
+            background-color: #007bff;
+        }
+
+        .action-cease {
+            background-color: #dc3545;
+        }
+
+        .action-card:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
 <div class="dashboard-container">

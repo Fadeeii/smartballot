@@ -12,23 +12,31 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #182848, #4b6cb7);
+            background-image: url('/BACKGROUND.jpg'); /* ✅ Background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             font-family: Arial, sans-serif;
             color: white;
         }
+
         .login-box {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2); /* ✅ translucent white */
             padding: 30px;
             border-radius: 20px;
             text-align: center;
             width: 320px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             animation: slideIn 1s ease-in-out;
+            backdrop-filter: blur(8px); /* ✅ adds a glass effect */
         }
+
         h2 {
             margin-bottom: 10px;
             font-size: 1.8rem;
+            color: #182848;
         }
+
         input {
             padding: 10px;
             margin: 10px 0;
@@ -38,9 +46,10 @@
             text-align: center;
             outline: none;
         }
+
         .btn {
-            background-color: white;
-            color: #182848;
+            background-color: #182848;
+            color: white;
             padding: 10px 20px;
             font-size: 1rem;
             border: none;
@@ -49,22 +58,26 @@
             margin: 5px;
             transition: all 0.2s ease-in-out;
         }
+
         .btn:hover {
             transform: scale(1.05);
-            background-color: #e0e0e0;
+            background-color: #2d3c6a;
         }
+
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
         .error {
             color: #ffcccc;
             font-size: 0.9rem;
             margin-top: 10px;
         }
+
         p.note {
             font-size: 0.85rem;
-            color: #ddd;
+            color: #333;
         }
     </style>
 </head>
@@ -84,7 +97,7 @@
 
 <script>
     function goBack() {
-        window.location.href = "/";  // ✅ Go to the root path handled by HelloController
+        window.location.href = "/";
     }
 </script>
 </body>
